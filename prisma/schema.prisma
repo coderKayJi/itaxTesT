@@ -1,0 +1,25 @@
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:K@dbaccesscode@localhost:3306/world"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model signup_details {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  mobile    String?
+  password  String
+  role      Role     @default(USER)
+  token     String?  @db.Text
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPERADMIN
+}
